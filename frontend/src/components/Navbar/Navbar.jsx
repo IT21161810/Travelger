@@ -8,12 +8,14 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge, IconButton } from '@mui/material';
 import { useContext } from 'react';
 import { UserContext } from '../context/userContext';
+import { CartContext } from '../context/productContext';
 
 const Navbar = () => {
 
   const { currentUser, setCurrentUser } = useContext(UserContext)
   const navigate = useNavigate()
 
+  const {cartItems} = useContext(CartContext)
 
   const logOut = () => {
     localStorage.removeItem('user');
@@ -38,7 +40,7 @@ const Navbar = () => {
           <li>{currentUser ? <button className='login_btn' onClick={logOut}>Log Out</button> : null}</li>
           <a href='/login'>{!currentUser ? <button className='login_btn'>Login</button> : null}</a>
           <a href='/cart'><IconButton sx={{ color: '#808080' }}>
-          <Badge badgeContent={4} color="success"><ShoppingCartIcon /></Badge>
+          <Badge badgeContent={cartItems.length} color="success"><ShoppingCartIcon /></Badge>
             </IconButton></a>
         </ul>
       </div>

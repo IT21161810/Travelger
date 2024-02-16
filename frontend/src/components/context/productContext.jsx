@@ -63,6 +63,7 @@ export const CartContext = createContext()
       addToCart,
       removeFromCart,
       clearCart,
+      cartItems,
       getCartTotal
     }}
     >
